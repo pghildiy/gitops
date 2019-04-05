@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: application
-          image: jeanpsv/kubernetes-simple-nodejs-example:v2
+          image: jeanpsv/kubernetes-simple-nodejs-example:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -36,7 +36,7 @@ spec:
                   name: app-secret
                   key: my_own_secret
   minReadySeconds: 30
-  #paused: false
+  paused: false
   revisionHistoryLimit: 3
   strategy:
     blueGreen: # A new field that used to provide configurable options for a BlueGreenUpdate strategy
