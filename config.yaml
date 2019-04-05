@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secret
+  namespace: prashant
+type: Opaque
+data:
+  my_own_secret: S3ViZXJuZXRlcyBXb3Jrcw==
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: app-deployment
+  namespace: prashant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-deploy
+  template:
+    metadata:
+      labels:
+        app: app-deploy
+    spec:
+      containers:
+        - name: application
+          image: jeanpsv/kubernetes-simple-nodejs-example:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          args: ["npm", "start"]
+          env:
+            - name: MY_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: my_own_secret
+  minReadySeconds: 30
+  revisionHistoryLimit: 3
+  strategy:
+    blueGreen: # A new field that used to provide configurable options for a BlueGreenUpdate strategy
+      previewService: app-service-preview # Reference to a service that can serve traffic to a new image before it receives the active traffic
+      activeService: app-service # Reference to a service that serves end-user traffic to the replica set
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+  namespace: prashant
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    app: app-deploy
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service-preview
+  namespace: prashant
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    app: app-deploy
