@@ -10,7 +10,7 @@ data:
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: app-deployment-3
+  name: app-deployment-4
   namespace: prashant
 spec:
   replicas: 1
