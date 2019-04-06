@@ -17,7 +17,7 @@ spec:
       # For more details: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
       #successCondition: status.phase = "Running"
       #failureCondition: status.failed > 3
-      manifest: |               #put your kubernetes spec here
+      manifest: |               #put your kubernetes spec here 
         apiVersion: extensions/v1beta1
         kind: Deployment
         metadata:
