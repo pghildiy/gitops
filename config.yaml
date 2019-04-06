@@ -15,7 +15,7 @@ spec:
       # of the resource (not just labels). Multiple AND conditions can be represented by comma
       # delimited expressions.
       # For more details: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
-      successCondition: status.phase = "Running"
+      #successCondition: status.phase = "Running"
       #failureCondition: status.failed > 3
       manifest: |               #put your kubernetes spec here
         apiVersion: extensions/v1beta1
