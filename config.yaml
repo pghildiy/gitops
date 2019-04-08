@@ -39,7 +39,7 @@ spec:
   revisionHistoryLimit: 3
   strategy:
     blueGreen: # A new field that used to provide configurable options for a BlueGreenUpdate strategy
-      previewService: app-service-preview # Reference to a service that can serve traffic to a new image before it receives the active traffic
+      previewService: app-service # app-service-preview # Reference to a service that can serve traffic to a new image before it receives the active traffic
       activeService: app-service # Reference to a service that serves end-user traffic to the replica set
 ---
 apiVersion: v1
