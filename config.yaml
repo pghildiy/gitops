@@ -10,7 +10,7 @@ data:
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: app-deployment-7
+  name: app-deployment-8
   namespace: prashant
 spec:
   replicas: 1
@@ -36,7 +36,6 @@ spec:
                   name: app-secret
                   key: my_own_secret
   minReadySeconds: 30
-  paused: false
   revisionHistoryLimit: 3
   strategy:
     blueGreen: # A new field that used to provide configurable options for a BlueGreenUpdate strategy
