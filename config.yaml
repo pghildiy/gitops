@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: app-secret
-  namespace: prashant
+  namespace: dont-use
 type: Opaque
 data:
   my_own_secret: S3ViZXJuZXRlcyBXb3Jrcw==
@@ -11,7 +11,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: app-deployment-9
-  namespace: prashant
+  namespace: dont-use
 spec:
   replicas: 1
   selector:
@@ -46,7 +46,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: app-service
-  namespace: prashant
+  namespace: dont-use
 spec:
   type: LoadBalancer
   ports:
@@ -61,7 +61,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: app-service-preview
-  namespace: prashant
+  namespace: dont-use
 spec:
   type: LoadBalancer
   ports:
@@ -70,4 +70,4 @@ spec:
       port: 80
       targetPort: 8080
   selector:
-app: app-deploy
+    app: app-deploy
