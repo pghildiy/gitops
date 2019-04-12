@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: application
-          image: jeanpsv/kubernetes-simple-nodejs-example:v2
+          image: jeanpsv/kubernetes-simple-nodejs-example:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
