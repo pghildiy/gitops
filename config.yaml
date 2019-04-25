@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: application
-          image: pghildiy/kubernetes-simple-nodejs-example:v1
+          image: pghildiy/kubernetes-simple-nodejs-example:v
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
